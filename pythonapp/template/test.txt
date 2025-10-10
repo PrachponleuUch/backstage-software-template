@@ -1,2 +1,2 @@
-The app's name is: ${values.app_name}
-The app's version is: ${values.app_env}
+The app's name is: ${{values.app_name}}
+The app's version is: ${{values.app_env}}
