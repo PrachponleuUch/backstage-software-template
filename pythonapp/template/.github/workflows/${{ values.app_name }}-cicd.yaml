@@ -66,11 +66,10 @@ jobs:
         shell: bash
         run: |
           repo='https://github.com/Alex-Uch/${{ values.app_name }}.git'
-          argocd repo list --server argocd-server.argocd | grep -q "$repo" || \
-          argocd repo add "$repo" --server argocd-server.argocd
-          argocd app get ${{ values.app_name }} --server argocd-server.argocd || \
+          argocd repo list  | grep -q "$repo" || \
+          argocd repo add "$repo"
+          argocd app get ${{ values.app_name }}  || \
           argocd app create ${{ values.app_name }} \
-            --server argocd-server.argocd \
             --repo "$repo" \
             --path charts/${{ values.app_name }} \
             --dest-namespace ${{ values.app_env }} \
@@ -83,5 +82,5 @@ jobs:
       - name: ArgoCD App Sync
         shell: bash
         run: |
-          argocd app sync ${{ values.app_name }} --server argocd-server.argocd
-          argocd app wait ${{ values.app_name }} --timeout 180 --server argocd-server.argocd
+          argocd app sync ${{ values.app_name }}
+          argocd app wait ${{ values.app_name }} --timeout 180
