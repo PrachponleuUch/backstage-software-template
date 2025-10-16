@@ -4,8 +4,7 @@ on:
   push:
     paths:
       - "src/**"
-    branches:
-      - [master, main]
+    branches: [master, main]
 
 jobs:
   ci:
